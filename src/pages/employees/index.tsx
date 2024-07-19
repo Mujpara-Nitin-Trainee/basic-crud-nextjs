@@ -41,9 +41,9 @@ export default function About() {
       <BasicUser register={register} control={control} error={errors} />
       <Shutter register={register} control={control} watch={watch} setValue={setValue} error={errors} />
       <Discount register={register} error={errors} />
-      <div className="text-center my-10">
+      {/* <div className="text-center my-10">
         <input type="submit" value="Submit" className="border-2 border-black px-2"></input>
-      </div>
+      </div> */}
     </form>
   </>
 }

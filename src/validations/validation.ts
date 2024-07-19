@@ -13,7 +13,8 @@ export const formSchema = yup.object().shape({
     })
   ).required(),
   total: yup.number().required(),
-  discount: yup.string().required(),
+  discountType: yup.string().required(),
+  discount: yup.number().required()
 })
 
 export const customerFormSchema = yup.object().shape({

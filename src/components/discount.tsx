@@ -7,28 +7,25 @@ import { formAttributes } from "@/types/types";
 export default function Discount({ register, error }: { register: UseFormRegister<formAttributes>, error: FieldErrors<formAttributes> }) {
   return (
     <>
-      <h3 className="text-2xl my-6 text-center">Discount Details</h3>
+      <h3 className="text-2xl my-6 mx-10">Discount Details</h3>
 
-      <div className="flex justify-center my-3 w-4/7">
+      <div className="flex my-3 w-3/4">
         <div className="w-1/4 flex items-center justify-between mx-10 ">
           <Label name="Type of Discount"></Label>
         </div>
+        <div className="flex w-[8%] justify-between">
+          <Radio name="discountType" register={register} error={error} value="amount" />
+          <Label name="Amount"></Label>
+        </div>
+        <div className="flex w-[9%] justify-between mx-10">
+          <Radio name="discountType" register={register} error={error} value="percentage" />
+          <Label name="percentage"></Label>
+        </div>
       </div>
-      <div className="flex justify-center my-3 w-4/7">
-        <div className="w-1/4 flex items-center justify-start">
-          <div>
-            <Label name="Amount"></Label>
-            <Radio name="discount" register={register} error={error} value="amount" />
-          </div>
-          <Input name='amount' register={register} error={error} placeholder="Enter your amount" />
-        </div>
-        <div className="w-1/4 flex items-center justify-between mx-10">
-          <div>
-            <Label name="percentage"></Label>
-            <Radio name="discount" register={register} error={error} value="percentage" />
-          </div>
-          <Input name='percentage' register={register} error={error} placeholder="Enter your percentage" />
-        </div>
+
+      <div className="flex my-6 w-1/4 mx-10 items-center justify-between">
+        <Label name="Amount"></Label>
+        <Input name="discount" register={register} error={error} placeholder="enter Value" />
       </div>
     </>
   )

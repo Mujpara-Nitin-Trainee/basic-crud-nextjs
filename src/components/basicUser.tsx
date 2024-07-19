@@ -34,26 +34,24 @@ export default function BasicUser({ register, control, error }: { register: UseF
 
   return (
     <>
-      <h3 className="text-2xl my-6 text-center ">Person Details</h3>
-      <div className="flex justify-center my-3 w-3/7 relative">
-        <div className="w-1/4 flex items-center justify-between mx-10 ">
+      <h3 className="text-2xl my-6 mx-10">Person Details</h3>
+      <div className="flex justify-center my-3 w-full">
+        <div className="w-2/4 flex items-center justify-between mx-10 ">
           <Label name="Person Name"></Label>
           <Input name='personName' register={register} error={error} placeholder="Enter Person Name" />
         </div>
-        <div className="w-1/4 flex items-center justify-between">
+        <div className="w-3/4 flex items-center justify-between">
           <label htmlFor='search'>Select Customer</label>
-          <div>
+          <div className="w-3/4">
             <button type="button" className="px-1 border-2 mx-1 border-black" onClick={handleModel}>+ Add</button>
             <Select name="customerName" options={options} register={register} error={error} />
           </div>
         </div>
-      </div>
-      <div className="flex justify-center my-3 w-3/7 ">
-        <div className="w-1/4 flex items-center justify-between mx-10 ">
+        <div className="w-2/4 flex items-center justify-between mx-10 ">
           <Label name="Date"></Label>
           <DateInput name="date" control={control} />
         </div>
-        <div className="w-1/4 flex items-center justify-between">
+        <div className="w-2/4 flex items-center justify-between">
         </div>
       </div>
       {(model === 1) ? <Model /> : <></>}
