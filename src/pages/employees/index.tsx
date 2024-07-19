@@ -19,7 +19,7 @@ export default function About() {
       <BasicUser register={register} control={control} />
       <Shutter register={register} />
       <Discount register={register} />
-      <input type="submit" value="Submit"></input>
+      {/* <input type="submit" value="Submit"></input> */}
       {/* <Link href='/'>Home</Link> */}
     </form>
   </>

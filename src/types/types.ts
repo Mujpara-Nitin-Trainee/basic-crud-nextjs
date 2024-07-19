@@ -2,7 +2,7 @@ export type FormProps = "name" | "date"
 
 export interface formAttributes {
   personName: string,
-  customer: string,
+  customerName: string,
   date: Date,
   shutterName: number,
   width: number,
@@ -14,4 +14,11 @@ export interface formAttributes {
   percentage: number,
 }
 
-export type formProp = | "personName" | "customer" | "date" | "width" | "height" | "area" | "total" | "amount" | "percentage" | "discount" | "shutterName"
+export interface customerAttribute {
+  id: number,
+  customerName: string,
+  customerEmail: string,
+  customerMobileNo: number
+}
+
+export type formProp = | "personName" | "customerName" | "date" | "width" | "height" | "area" | "total" | "amount" | "percentage" | "discount" | "shutterName" 
