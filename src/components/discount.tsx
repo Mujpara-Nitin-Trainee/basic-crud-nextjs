@@ -1,10 +1,10 @@
-import { UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
 import Input from "./common/input";
 import Label from "./common/label";
 import Radio from "./common/radio";
 import { formAttributes } from "@/types/types";
 
-export default function Discount({ register }: { register: UseFormRegister<formAttributes> }) {
+export default function Discount({ register, error }: { register: UseFormRegister<formAttributes>, error: FieldErrors<formAttributes> }) {
   return (
     <>
       <h3 className="text-2xl my-6 text-center">Discount Details</h3>
@@ -18,16 +18,16 @@ export default function Discount({ register }: { register: UseFormRegister<formA
         <div className="w-1/4 flex items-center justify-start">
           <div>
             <Label name="Amount"></Label>
-            <Radio name="discount" register={register} value="amount" />
+            <Radio name="discount" register={register} error={error} value="amount" />
           </div>
-          <Input name='amount' register={register} placeholder="Enter your amount" />
+          <Input name='amount' register={register} error={error} placeholder="Enter your amount" />
         </div>
         <div className="w-1/4 flex items-center justify-between mx-10">
           <div>
             <Label name="percentage"></Label>
-            <Radio name="discount" register={register} value="percentage" />
+            <Radio name="discount" register={register} error={error} value="percentage" />
           </div>
-          <Input name='percentage' register={register} placeholder="Enter your percentage" />
+          <Input name='percentage' register={register} error={error} placeholder="Enter your percentage" />
         </div>
       </div>
     </>

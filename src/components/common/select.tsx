@@ -1,7 +1,7 @@
 import { formAttributes, formProp } from "@/types/types"
-import { UseFormRegister } from "react-hook-form"
+import { FieldErrors, UseFormRegister } from "react-hook-form"
 
-export default function Select({ name, options, register }: { name: formProp, options: { key: number, value: string }[], register: UseFormRegister<formAttributes> }) {
+export default function Select({ name, options, register, error }: { name: formProp, options: { key: number, value: string }[], register: UseFormRegister<formAttributes>, error: FieldErrors<formAttributes> }) {
   return (
     <>
       <select {...register(name)} className="border-2 border-black w-[55%]">
@@ -9,6 +9,7 @@ export default function Select({ name, options, register }: { name: formProp, op
           return <option key={index} value={ele.key}>{ele.value}</option>
         })}
       </select >
+      {(error[name as keyof object] as { type: string, message: string }) && <p> {(error[name as keyof object] as { type: string, message: string })?.message} </p>}
     </>
   )
 }

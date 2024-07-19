@@ -1,7 +1,7 @@
 import { formAttributes } from "@/types/types";
 import Input from "./common/input";
 import Label from "./common/label";
-import { Control, UseFormRegister } from "react-hook-form";
+import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import DateInput from "./common/dateInput";
 import { useState } from "react";
 import Model from "./model";
@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { customerDetails } from "@/redux/customer/customerSlice";
 import Select from "./common/select";
 
-export default function BasicUser({ register, control }: { register: UseFormRegister<formAttributes>, control: Control<formAttributes> }) {
+export default function BasicUser({ register, control, error }: { register: UseFormRegister<formAttributes>, control: Control<formAttributes>, error: FieldErrors<formAttributes> }) {
 
   const customer = useSelector(customerDetails);
 
@@ -38,14 +38,13 @@ export default function BasicUser({ register, control }: { register: UseFormRegi
       <div className="flex justify-center my-3 w-3/7 relative">
         <div className="w-1/4 flex items-center justify-between mx-10 ">
           <Label name="Person Name"></Label>
-          <Input name='personName' register={register} placeholder="Enter Person Name" />
+          <Input name='personName' register={register} error={error} placeholder="Enter Person Name" />
         </div>
         <div className="w-1/4 flex items-center justify-between">
           <label htmlFor='search'>Select Customer</label>
           <div>
             <button type="button" className="px-1 border-2 mx-1 border-black" onClick={handleModel}>+ Add</button>
-            <Select name="customerName" options={options} register={register} />
-            {/* <Input register={register} name='customerName' placeholder="Search User" /> */}
+            <Select name="customerName" options={options} register={register} error={error} />
           </div>
         </div>
       </div>
