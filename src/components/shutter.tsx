@@ -25,20 +25,24 @@ export default function Shutter({ register, control, watch, setValue, error }: {
     const height = fieldValue[index].height;
 
     setValue(`shutter.${index}.area`, (width * height));
+    calculateTotal()
   }
 
-  useEffect(() => {
+  const calculateTotal = () => {
     let total = 0;
     fieldValue.map((ele) => {
       total += ele.area;
     })
     setValue(`total`, total);
-  })
+  }
+
+  useEffect(() => {
+    calculateTotal()
+  }, [])
 
   const handleIncrement = () => {
     append({ shutterName: '', width: 0, height: 0, area: 0 });
   }
-
 
   return (
     <>

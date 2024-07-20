@@ -3,24 +3,34 @@ import Input from "./common/input";
 import Label from "./common/label";
 import Radio from "./common/radio";
 import { formAttributes } from "@/types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Discount({ register, error, watch, total }: { register: UseFormRegister<formAttributes>, error: FieldErrors<formAttributes>, watch: UseFormWatch<formAttributes>, total: number }) {
 
   const discountType = watch('discountType');
   const discount = watch('discount');
-
   const [payableAmount, SetPayableAmount] = useState<number>(0);
+  const [discountAmount, SetDiscountAmount] = useState<number>(0);
 
   const handleDiscount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let userValue = +e.target.value;
+    SetDiscountAmount(+e.target.value);
+    calculateBill();
+  }
+
+  const calculateBill = () => {
     if (discountType === 'amount') {
-      SetPayableAmount(total - userValue);
+      console.log(total - discount);
+      SetPayableAmount(total - discount);
     } else {
-      let deductionValue = ((total * userValue) / 100);
+      let deductionValue = ((total * discount) / 100);
       SetPayableAmount(total - deductionValue);
     }
   }
+
+  useEffect(() => {
+    calculateBill()
+  }, [discountAmount, discountType, total])
+
 
   return (
     <>
