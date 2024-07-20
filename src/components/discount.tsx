@@ -19,7 +19,6 @@ export default function Discount({ register, error, watch, total }: { register: 
 
   const calculateBill = () => {
     if (discountType === 'amount') {
-      console.log(total - discount);
       SetPayableAmount(total - discount);
     } else {
       let deductionValue = ((total * discount) / 100);

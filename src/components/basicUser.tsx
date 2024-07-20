@@ -53,7 +53,7 @@ export default function BasicUser({ register, control, error }: { register: UseF
         <div className="w-2/4 flex items-center justify-between">
         </div>
       </div>
-      {(model === 1) ? <Model /> : <></>}
+      {(model === 1) ? <Model view={setModel} /> : <></>}
     </>
   )
 }

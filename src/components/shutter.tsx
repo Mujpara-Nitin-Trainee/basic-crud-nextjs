@@ -3,7 +3,7 @@ import Input from "./common/input";
 import { Control, FieldErrors, set, useFieldArray, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { formAttributes } from "@/types/types";
 import Select from "./common/select";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const options = [
   {

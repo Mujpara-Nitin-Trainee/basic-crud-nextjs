@@ -3,6 +3,7 @@ import { RootState } from "../store";
 
 export interface shutterAttribute {
   shutterBill: {
+    id: number,
     personName: string,
     customerName: string,
     date: Date,
@@ -14,7 +15,7 @@ export interface shutterAttribute {
     }[],
     total: number,
     discountType: string,
-    amount: number
+    amount: string
   }[]
 }
 

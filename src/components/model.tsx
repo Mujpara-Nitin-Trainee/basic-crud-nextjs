@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCustomer, customerDetails } from "@/redux/customer/customerSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { customerFormSchema } from "@/validations/validation";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Model() {
+export default function Model({ view }: { view: Dispatch<SetStateAction<number>> }) {
 
   const dispatch = useDispatch();
   const customers = useSelector(customerDetails);
@@ -14,8 +15,6 @@ export default function Model() {
   const { register, formState: { errors }, handleSubmit } = useForm<customerAttribute>({
     resolver: yupResolver(customerFormSchema)
   });
-
-  console.log(customers.customer);
 
   const handleCustomer = (formData: customerAttribute) => {
 
@@ -30,14 +29,14 @@ export default function Model() {
       if (flag === 0) {
         formData.id = customers.customer.length + 1;
         dispatch(addCustomer(formData));
+        view(0);
       }
     } else {
       formData.id = customers.customer.length + 1;
       dispatch(addCustomer(formData));
+      view(0);
     }
   }
-
-  console.log(errors);
 
   return (
     <div className="flex justify-center w-3/5">
