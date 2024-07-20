@@ -31,18 +31,22 @@ export default function Shutter({ register, control, watch, setValue, error }: {
   const calculateTotal = () => {
     let total = 0;
     fieldValue.map((ele) => {
-      total += ele.area;
+      total += Number(ele.area);
     })
     setValue(`total`, total);
   }
 
-  useEffect(() => {
-    calculateTotal()
-  }, [])
-
   const handleIncrement = () => {
     append({ shutterName: '', width: 0, height: 0, area: 0 });
   }
+
+  const handleClone = (index: number) => {
+    append({ shutterName: fieldValue[index].shutterName, width: fieldValue[index].width, height: fieldValue[index].height, area: fieldValue[index].area });
+  }
+
+  useEffect(() => {
+    calculateTotal()
+  }, [fieldValue])
 
   return (
     <>
@@ -50,7 +54,6 @@ export default function Shutter({ register, control, watch, setValue, error }: {
         <h3 className="text-2xl my-6 mx-10">Shutter Details</h3>
         <div>
           <button type="button" className="border-2 border-black px-2 mx-1 h-max" onClick={handleIncrement}>+</button>
-          <button type="button" className="border-2 border-black px-2 mx-1 h-max">clone</button>
         </div>
       </div>
 
@@ -82,11 +85,14 @@ export default function Shutter({ register, control, watch, setValue, error }: {
               <input type="text" {...register(`shutter.${index}.area`)} readOnly className="my-3 opacity-80 border-2 border-black" />
             </div>
             <div className="w-2/4 flex items-center justify-between mx-10">
-              <button type="button" className="flex float-right" onClick={() => remove(index)}>
-                <svg className="w-6 h-6 text-gray-800 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
-                </svg>
-              </button>
+              <div className="w-[25%] flex justify-between">
+                <button type="button" onClick={() => handleClone(index)}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><path d="M14 8H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2V10c0-1.103-.897-2-2-2z"></path><path d="M20 2H10a2 2 0 0 0-2 2v2h8a2 2 0 0 1 2 2v8h2a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"></path></svg></button>
+                <button type="button" className="flex float-right" onClick={() => remove(index)}>
+                  <svg className="w-6 h-6 text-gray-800 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
