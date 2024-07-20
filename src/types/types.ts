@@ -14,6 +14,8 @@ export interface formAttributes {
   shutter: shutterAttribute[],
   total: number,
   discountType: string,
+  amount: string,
+  percentage: string,
   discount: number
 }
 
@@ -24,4 +26,4 @@ export interface customerAttribute {
   customerMobileNo: number
 }
 
-export type formProp = | "personName" | "customerName" | "date" | `shutter.${number}.width` | `shutter.${number}.height` | `shutter.${number}.area` | "total" | "amount" | "percentage" | "discountType" | "discount" | `shutter.${number}.shutterName` 
+export type formProp = | "personName" | "customerName" | "date" | `shutter.${number}.width` | `shutter.${number}.height` | `shutter.${number}.area` | "total" | "amount" | "percentage" | "discountType" | "discount" | `shutter.${number}.shutterName` | "amount" | "percentage"

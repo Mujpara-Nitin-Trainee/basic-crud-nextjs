@@ -10,16 +10,17 @@ const initialValue = {
   personName: '',
   customerName: 0,
   date: new Date(),
-  shutter: [{
-    shutterName: 0,
-    width: 0,
-    height: 0,
-    area: 0,
-  }],
+  shutter: [
+    {
+      shutterName: 0,
+      width: 0,
+      height: 0,
+      area: 0,
+    }
+  ],
   total: 0,
-  discount: '',
-  amount: 0,
-  percentage: 0
+  discountType: '',
+  discount: 0
 }
 
 export default function About() {
@@ -33,17 +34,17 @@ export default function About() {
     console.log(formData);
   }
 
-  console.log(errors);
+  const total = watch('total');
 
   return <>
     <p className="text-3xl text-center">Add Details</p>
     <form onSubmit={handleSubmit(handleForm)}>
       <BasicUser register={register} control={control} error={errors} />
       <Shutter register={register} control={control} watch={watch} setValue={setValue} error={errors} />
-      <Discount register={register} error={errors} />
-      {/* <div className="text-center my-10">
+      <Discount register={register} error={errors} watch={watch} total={total} />
+      <div className="w-[78%] flex justify-end">
         <input type="submit" value="Submit" className="border-2 border-black px-2"></input>
-      </div> */}
+      </div>
     </form>
   </>
 }
