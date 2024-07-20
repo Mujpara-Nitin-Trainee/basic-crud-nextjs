@@ -3,13 +3,12 @@ import Input from "./common/input";
 import Label from "./common/label";
 import Radio from "./common/radio";
 import { formAttributes } from "@/types/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Discount({ register, error, watch, total }: { register: UseFormRegister<formAttributes>, error: FieldErrors<formAttributes>, watch: UseFormWatch<formAttributes>, total: number }) {
 
   const discountType = watch('discountType');
   const discount = watch('discount');
-
 
   const [payableAmount, SetPayableAmount] = useState<number>(0);
 
@@ -22,11 +21,6 @@ export default function Discount({ register, error, watch, total }: { register: 
       SetPayableAmount(total - deductionValue);
     }
   }
-
-  useEffect(() => {
-    console.log('Hello', total);
-  }, [total])
-
 
   return (
     <>
@@ -53,7 +47,7 @@ export default function Discount({ register, error, watch, total }: { register: 
 
       <div className="my-6 mx-20 w-1/4 float-right">
         <p>Total :- {total}</p>
-        <p>Discount :- {discount}{(discountType === 'percentage') ? '%' : ''}</p>
+        <p>Discount :- {discount}{(discountType === 'percentage') ? '%' : ' rupees'}</p>
         <p>Grand Discount :- {payableAmount}</p>
       </div>
 

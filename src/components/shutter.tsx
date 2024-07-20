@@ -7,15 +7,9 @@ import { useEffect, useState } from "react";
 
 const options = [
   {
-    key: 0,
-    value: "Select Any Shutter"
-  },
-  {
-    key: 1,
     value: "Panel Shutter"
   },
   {
-    key: 2,
     value: "Board and batten shutters"
   }
 ]
@@ -42,7 +36,7 @@ export default function Shutter({ register, control, watch, setValue, error }: {
   })
 
   const handleIncrement = () => {
-    append({ shutterName: 0, width: 0, height: 0, area: 0 });
+    append({ shutterName: '', width: 0, height: 0, area: 0 });
   }
 
 
@@ -72,9 +66,7 @@ export default function Shutter({ register, control, watch, setValue, error }: {
               {(error[`shutter` as keyof object] as { width: { type: string, message: string } }) && <p> {(error[`shutter` as keyof object] as
                 { width?: { type: string, message: string }; }[])![index]?.width?.message} </p>}
             </div>
-            {/* </div>
 
-          <div className="flex justify-center my-3 w-3/7"> */}
             <div className="w-2/4 flex items-center justify-between mx-10">
               <Label name="height"></Label>
               <Input name={`shutter.${index}.height`} register={register} error={error} handleChange={() => handleArea(index)} placeholder="Enter your height" />

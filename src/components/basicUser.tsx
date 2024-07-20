@@ -13,12 +13,11 @@ export default function BasicUser({ register, control, error }: { register: UseF
 
   const customer = useSelector(customerDetails);
 
-  const options: { key: number, value: string }[] = [];
+  const options: { value: string }[] = [];
 
-  options.push({ key: 0, value: 'Select Any Customer' });
 
   customer.customer?.map((ele) => {
-    options.push({ key: ele.id, value: ele.customerName })
+    options.push({ value: ele.customerName })
   });
 
 

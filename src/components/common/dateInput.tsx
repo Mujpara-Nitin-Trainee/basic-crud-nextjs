@@ -1,6 +1,7 @@
 import { formAttributes, formProp } from "@/types/types";
 import DatePicker from "react-datepicker";
 import { Control, Controller } from "react-hook-form";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateInput({ control, name }: { control: Control<formAttributes>, name: formProp }) {
   return (

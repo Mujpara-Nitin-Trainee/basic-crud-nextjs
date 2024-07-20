@@ -3,13 +3,19 @@ import Label from "./common/label";
 import { customerAttribute } from "@/types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { addCustomer, customerDetails } from "@/redux/customer/customerSlice";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { customerFormSchema } from "@/validations/validation";
 
 export default function Model() {
 
   const dispatch = useDispatch();
   const customers = useSelector(customerDetails);
 
-  const { register, handleSubmit } = useForm<customerAttribute>();
+  const { register, formState: { errors }, handleSubmit } = useForm<customerAttribute>({
+    resolver: yupResolver(customerFormSchema)
+  });
+
+  console.log(customers.customer);
 
   const handleCustomer = (formData: customerAttribute) => {
 
@@ -18,7 +24,6 @@ export default function Model() {
     if (customers.customer.length !== 0) {
       customers.customer.map((ele) => {
         if (ele.customerName === formData.customerName || ele.customerEmail === formData.customerEmail) {
-          console.log("Existing");
           flag = 1;
         }
       })
@@ -32,28 +37,41 @@ export default function Model() {
     }
   }
 
+  console.log(errors);
+
   return (
-    <>
+    <div className="flex justify-center w-3/5">
       <form>
-        <div className="w-1/2 absolute border-2 border-black bg-white">
+        <div className="w-[25%] absolute border-2 border-black bg-white z-10 mx-10 p-6">
           <input type="hidden" {...register('id')} defaultValue="0" />
-          <div className="w-2/4 flex justify-between my-2">
+
+          <div className="w-full flex justify-between my-2">
             <Label name="Customer Name" />
-            <input {...register('customerName')} placeholder="Enter Customer Name" className="border-2 border-black" />
+            <div>
+              <input {...register('customerName')} placeholder="Enter Customer Name" className="border-2 border-black" />
+              {errors.customerName && <p className="text-red-300">{errors.customerName.message}</p>}
+            </div>
           </div>
-          <div className="w-2/4 flex justify-between my-2">
+
+          <div className="w-full flex justify-between my-2">
             <Label name="Customer Email" />
-            <input  {...register('customerEmail')} placeholder="Enter Customer Email" className="border-2 border-black" />
+            <div>
+              <input  {...register('customerEmail')} placeholder="Enter Customer Email" className="border-2 border-black" />
+              {errors.customerEmail && <p className="text-red-300"> {errors.customerEmail.message}</p>}
+            </div>
           </div>
-          <div className="w-2/4 flex justify-between my-2">
+          <div className="w-full flex justify-between my-2">
             <Label name="Customer Mobile No" />
-            <input {...register('customerMobileNo')} placeholder="Enter Customer Mobile No" className="border-2 border-black" />
+            <div>
+              <input {...register('customerMobileNo')} placeholder="Enter Customer Mobile No" className="border-2 border-black" />
+              {errors.customerMobileNo && <p className="text-red-300"> {errors.customerMobileNo.message}</p>}
+            </div>
           </div>
-          <div className="w-2/4 flex justify-between">
-            <input type="button" onClick={handleSubmit(handleCustomer)} value="submit" />
+          <div className="w-full">
+            <input type="button" className="border-2 px-2 py-1 border-black float-right" onClick={handleSubmit(handleCustomer)} value="submit" />
           </div>
         </div>
       </form>
-    </>
+    </div>
   )
 }

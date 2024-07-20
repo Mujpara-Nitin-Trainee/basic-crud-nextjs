@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import storage from 'redux-persist/lib/storage';
 import customerReducer from './customer/customerSlice';
+import shutterReducer from './shutter/shutterSlice';
 import { persistReducer, persistStore } from 'redux-persist';
 
 const persistConfig = {
@@ -9,7 +10,8 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-  customerReducer
+  customerReducer,
+  shutterReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
