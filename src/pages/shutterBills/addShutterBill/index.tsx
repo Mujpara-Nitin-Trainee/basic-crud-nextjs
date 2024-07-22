@@ -6,9 +6,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { formSchema } from "@/validations/validation";
 import { useDispatch, useSelector } from "react-redux";
-import { addShutterBill, shutterDetails } from "@/redux/shutter/shutterSlice";
+import { addShutterBill, shutterDetails, updateShutterBill } from "@/redux/shutter/shutterSlice";
 import { useRouter } from "next/router";
 import { useSearchParams } from 'next/navigation'
+import { useEffect } from "react";
 
 const initialValue = {
   personName: '',
@@ -29,34 +30,45 @@ const initialValue = {
 
 export default function Employee() {
 
+  const searchParams = useSearchParams();
+
   const router = useRouter();
 
-  const id = 1;
+  const id = Number(searchParams.get('id'));
 
   const shutterBill = useSelector(shutterDetails);
-
-  const data = shutterBill.shutterBill.find((ele) => (ele.id === id));
-
-  console.log(data);
 
   const { register, control, handleSubmit, watch, setValue, formState: { errors }, reset } = useForm<formAttributes>({
     defaultValues: initialValue,
     resolver: yupResolver(formSchema)
   });
 
-  reset(data);
+  useEffect(() => {
+    if (id) {
+      const data = shutterBill.shutterBill.find((ele) => (ele.id === id));
+      reset(data);
+    }
+  }, [id])
+
 
   const dispatch = useDispatch();
 
   const handleForm = (formData: formAttributes) => {
-    if (shutterBill.shutterBill.length === 0) {
-      formData.id = 1;
+
+    if (id) {
+      dispatch(updateShutterBill(formData));
+      router.push('/shutterBills');
     } else {
-      formData.id = shutterBill.shutterBill.length + 1;
+      if (shutterBill.shutterBill.length === 0) {
+        formData.id = 1;
+      } else {
+        formData.id = shutterBill.shutterBill.length + 1;
+      }
+
+      dispatch(addShutterBill(formData));
+      router.push('/shutterBills');
     }
 
-    dispatch(addShutterBill(formData));
-    router.push('/shutterBills');
   }
 
   const total = watch('total');

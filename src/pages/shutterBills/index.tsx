@@ -9,7 +9,7 @@ export default function Employee() {
   const router = useRouter();
 
   const updateShutterBill = async (id: number) => {
-    router.push(`/shutterBill/addShutterBill/${id}`);
+    router.push(`/shutterBills/addShutterBill?id=${id}`);
   }
 
   return (
