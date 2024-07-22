@@ -15,6 +15,7 @@ export interface shutterAttribute {
     }[],
     total: number,
     discountType: string,
+    discount: number,
     amount: string
   }[]
 }
@@ -36,8 +37,9 @@ export const shutterSlice = createSlice({
       shutterBills[index] = action.payload;
     },
     deleteShutterBill: (state, action) => {
-      const shutterBills = current(state.shutterBill);
-      state.shutterBill = shutterBills.filter(bill => bill.id !== action.payload);
+      const shutterBills = state.shutterBill;
+      const index = shutterBills.findIndex(bill => bill.id === action.payload);
+      state.shutterBill.splice(index, 1);
     }
   }
 })

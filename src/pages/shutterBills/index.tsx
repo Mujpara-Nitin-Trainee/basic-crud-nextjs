@@ -1,11 +1,10 @@
 import { shutterDetails } from "@/redux/shutter/shutterSlice";
 import { useDispatch, useSelector } from "react-redux"
-import ShutterBillList from "../../components/employeeList";
+import ShutterBillList from "../../components/shutterBillList";
 import { deleteShutterBill } from "../../redux/shutter/shutterSlice";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
-export default function Employee() {
+export default function ShutterBill() {
 
   const dispatch = useDispatch();
 
@@ -23,22 +22,7 @@ export default function Employee() {
 
   return (
     <div className="flex justify-center items-center my-10">
-      <div>
-        <button className="my-6 ml-[460px] border-2 border-black px-2 py-1" onClick={() => router.push('/shutterBills/addShutterBill')}>Add Employee</button>
-        <table>
-          <thead>
-            <tr className="border-2 border-black">
-              <th className="py-6 px-3 border-2 border-black">Personal Name</th>
-              <th className="py-6 px-3 border-2 border-black">Customer Name</th>
-              <th className="py-6 px-3 border-2 border-black">Date</th>
-              <th className="py-6 px-3 border-2 border-black">Action</th>
-            </tr>
-          </thead>
-          {shutterBills.shutterBill.map((ele, index) => {
-            return <ShutterBillList key={index} shutterBill={ele} updateBill={updateShutterBill} removeBill={removeShutterBill}></ShutterBillList>
-          })}
-        </table>
-      </div>
+      <ShutterBillList shutterBill={shutterBills.shutterBill} updateBill={updateShutterBill} removeBill={removeShutterBill}></ShutterBillList>
     </div>
   )
 }

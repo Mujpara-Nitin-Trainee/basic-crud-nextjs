@@ -42,5 +42,6 @@ export interface shutterBillAttribute {
   }[],
   total: number,
   discountType: string,
+  discount: number,
   amount: string
 }
