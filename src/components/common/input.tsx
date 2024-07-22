@@ -4,9 +4,9 @@ import { ChangeEventHandler } from "react";
 
 export default function Input({ register, name, placeholder, handleChange, error }: { register: UseFormRegister<formAttributes>, name: formProp, placeholder: string, handleChange?: ChangeEventHandler<HTMLInputElement> | undefined, error: FieldErrors<formAttributes> }) {
   return (
-    <>
+    <div>
       <input type='text' {...register(name, { onChange: handleChange })} placeholder={placeholder} className="my-3 opacity-80 border-2 border-black"></input>
-      {(error[name as keyof object] as { type: string, message: string }) && <p> {(error[name as keyof object] as { type: string, message: string })?.message} </p>}
-    </>
+      {(error[name as keyof object] as { type: string, message: string }) && <p className="text-red-300"> {(error[name as keyof object] as { type: string, message: string })?.message} </p>}
+    </div>
   )
 }

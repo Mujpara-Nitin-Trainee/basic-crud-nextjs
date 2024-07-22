@@ -63,22 +63,28 @@ export default function Shutter({ register, control, watch, setValue, error }: {
           <div className="flex justify-center my-3 w-[95%] ">
             <div className="w-2/4 flex items-center justify-between mx-10 ">
               <Label name="Shutter Name"></Label>
-              <Select name={`shutter.${index}.shutterName`} error={error} options={options} register={register} />
-              {(error[`shutter` as keyof object] as { shutterName: { type: string, message: string } }) && <p> {(error[`shutter` as keyof object] as
-                { shutterName?: { type: string, message: string }; }[])![index]?.shutterName?.message} </p>}
+              <div className="w-full">
+                <Select name={`shutter.${index}.shutterName`} error={error} options={options} register={register} />
+                {(error[`shutter` as keyof object] as { shutterName: { type: string, message: string } }) && <p className="text-red-300"> {(error[`shutter` as keyof object] as
+                  { shutterName?: { type: string, message: string }; }[])![index]?.shutterName?.message} </p>}
+              </div>
             </div>
             <div className="w-2/4 flex items-center justify-between">
               <Label name="width"></Label>
-              <Input name={`shutter.${index}.width`} register={register} error={error} handleChange={() => handleArea(index)} placeholder="Enter your width" />
-              {(error[`shutter` as keyof object] as { width: { type: string, message: string } }) && <p> {(error[`shutter` as keyof object] as
-                { width?: { type: string, message: string }; }[])![index]?.width?.message} </p>}
+              <div>
+                <Input name={`shutter.${index}.width`} register={register} error={error} handleChange={() => handleArea(index)} placeholder="Enter your width" />
+                {(error[`shutter` as keyof object] as { width: { type: string, message: string } }) && <p className="text-red-300"> {(error[`shutter` as keyof object] as
+                  { width?: { type: string, message: string }; }[])![index]?.width?.message} </p>}
+              </div>
             </div>
 
             <div className="w-2/4 flex items-center justify-between mx-10">
               <Label name="height"></Label>
-              <Input name={`shutter.${index}.height`} register={register} error={error} handleChange={() => handleArea(index)} placeholder="Enter your height" />
-              {(error[`shutter` as keyof object] as { height: { type: string, message: string } }) && <p> {(error[`shutter` as keyof object] as
-                { height?: { type: string, message: string }; }[])![index]?.height?.message} </p>}
+              <div>
+                <Input name={`shutter.${index}.height`} register={register} error={error} handleChange={() => handleArea(index)} placeholder="Enter your height" />
+                {(error[`shutter` as keyof object] as { height: { type: string, message: string } }) && <p className="text-red-300"> {(error[`shutter` as keyof object] as
+                  { height?: { type: string, message: string }; }[])![index]?.height?.message} </p>}
+              </div>
             </div>
             <div className="w-2/4 flex items-center justify-between">
               <Label name="area"></Label>

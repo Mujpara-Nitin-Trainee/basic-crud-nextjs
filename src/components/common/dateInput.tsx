@@ -8,8 +8,8 @@ export default function DateInput({ control, name }: { control: Control<formAttr
     <>
       <Controller control={control} name={name}
         render={({ field }) => (
-          <DatePicker className="border-2 border-black w-[99%] my-3" dateFormat="YYYY-MM-dd" onChange={(date) => field.onChange(date)}
-            selected={new Date()} />
+          <DatePicker className="border-2 border-black w-[99%] my-3 text-black" dateFormat="YYYY-MM-dd" onChange={(date) => field.onChange(date)}
+          />
         )} />
     </>
   )

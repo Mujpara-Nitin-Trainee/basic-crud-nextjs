@@ -34,11 +34,15 @@ export const shutterSlice = createSlice({
       const shutterBills = state.shutterBill;
       const index = shutterBills.findIndex(bill => bill.id === action.payload.id);
       shutterBills[index] = action.payload;
+    },
+    deleteShutterBill: (state, action) => {
+      const shutterBills = current(state.shutterBill);
+      state.shutterBill = shutterBills.filter(bill => bill.id !== action.payload);
     }
   }
 })
 
-export const { addShutterBill, updateShutterBill } = shutterSlice.actions;
+export const { addShutterBill, updateShutterBill, deleteShutterBill } = shutterSlice.actions;
 
 export const shutterDetails = (state: RootState) => state.shutterReducer;
 

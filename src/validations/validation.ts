@@ -14,7 +14,10 @@ export const formSchema = yup.object().shape({
   ).required(),
   total: yup.number().required(),
   discountType: yup.string().required(),
-  discount: yup.number().required()
+  discount: yup.number().test('discount Error', (value, context) => {
+    //@ts-ignore
+    return context.parent.discountType === 'percentage' ? (value <= 100 && value > 0) : (value > 0 && value <= context.parent.total)
+  }).required()
 })
 
 export const customerFormSchema = yup.object().shape({

@@ -1,15 +1,24 @@
 import { shutterDetails } from "@/redux/shutter/shutterSlice";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ShutterBillList from "../../components/employeeList";
+import { deleteShutterBill } from "../../redux/shutter/shutterSlice";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Employee() {
 
-  const shutterBills = useSelector(shutterDetails);
+  const dispatch = useDispatch();
+
   const router = useRouter();
+
+  const shutterBills = useSelector(shutterDetails);
 
   const updateShutterBill = async (id: number) => {
     router.push(`/shutterBills/addShutterBill?id=${id}`);
+  }
+
+  const removeShutterBill = async (id: number) => {
+    dispatch(deleteShutterBill(id));
   }
 
   return (
@@ -26,7 +35,7 @@ export default function Employee() {
             </tr>
           </thead>
           {shutterBills.shutterBill.map((ele, index) => {
-            return <ShutterBillList key={index} shutterBill={ele} updateBill={updateShutterBill}></ShutterBillList>
+            return <ShutterBillList key={index} shutterBill={ele} updateBill={updateShutterBill} removeBill={removeShutterBill}></ShutterBillList>
           })}
         </table>
       </div>
