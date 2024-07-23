@@ -33,7 +33,7 @@ export interface shutterBillAttribute {
   id?: number,
   personName: string,
   customerName: string,
-  date: Date,
+  date: string,
   shutter: {
     shutterName: string,
     width: number,

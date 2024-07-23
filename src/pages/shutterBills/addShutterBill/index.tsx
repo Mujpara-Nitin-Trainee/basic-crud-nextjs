@@ -69,8 +69,6 @@ export default function Employee() {
         formData.id = shutterBill.shutterBill.length + 1;
       }
 
-      // console.log(new Date(formData.date).toLocaleString('en-US').split(',')[0]);
-
       dispatch(addShutterBill(formData));
       router.push('/shutterBills');
     }
