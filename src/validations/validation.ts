@@ -3,7 +3,7 @@ import * as yup from 'yup';
 export const formSchema = yup.object().shape({
   personName: yup.string().required(),
   customerName: yup.string().required(),
-  date: yup.date().required(),
+  date: yup.string().required(),
   shutter: yup.array().of(
     yup.object().shape({
       shutterName: yup.string().required(),

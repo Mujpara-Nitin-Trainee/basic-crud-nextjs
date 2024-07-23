@@ -11,7 +11,7 @@ export interface formAttributes {
   id?: number,
   personName: string,
   customerName: string,
-  date: Date,
+  date: string,
   shutter: shutterAttribute[],
   total: number,
   discountType: string,

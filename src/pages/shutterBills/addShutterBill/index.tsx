@@ -15,7 +15,7 @@ import Model from "@/components/model";
 const initialValue = {
   personName: '',
   customerName: '',
-  date: new Date(),
+  date: '',
   shutter: [
     {
       shutterName: '',
@@ -57,8 +57,7 @@ export default function Employee() {
 
   const handleForm = (formData: formAttributes) => {
 
-    //@ts-ignore
-    formData.date = formData.date.toLocaleString('en-US').split(',')[0];
+    formData.date = new Date(formData.date).toLocaleString('en-US').split(',')[0];
 
     if (id) {
       dispatch(updateShutterBill(formData));
@@ -69,6 +68,9 @@ export default function Employee() {
       } else {
         formData.id = shutterBill.shutterBill.length + 1;
       }
+
+      // console.log(new Date(formData.date).toLocaleString('en-US').split(',')[0]);
+
       dispatch(addShutterBill(formData));
       router.push('/shutterBills');
     }
