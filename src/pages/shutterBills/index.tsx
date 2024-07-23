@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from "react-redux"
 import ShutterBillList from "../../components/shutterBillList";
 import { deleteShutterBill } from "../../redux/shutter/shutterSlice";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function ShutterBill() {
 
-  const dispatch = useDispatch();
-
   const router = useRouter();
 
+  const dispatch = useDispatch();
+
   const shutterBills = useSelector(shutterDetails);
+
 
   const updateShutterBill = async (id: number) => {
     router.push(`/shutterBills/addShutterBill?id=${id}`);

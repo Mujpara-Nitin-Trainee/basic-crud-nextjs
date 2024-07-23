@@ -57,6 +57,9 @@ export default function Employee() {
 
   const handleForm = (formData: formAttributes) => {
 
+    //@ts-ignore
+    formData.date = formData.date.toLocaleString('en-US').split(',')[0];
+
     if (id) {
       dispatch(updateShutterBill(formData));
       router.push('/shutterBills');
@@ -66,7 +69,6 @@ export default function Employee() {
       } else {
         formData.id = shutterBill.shutterBill.length + 1;
       }
-
       dispatch(addShutterBill(formData));
       router.push('/shutterBills');
     }

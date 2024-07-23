@@ -25,7 +25,7 @@ export default function ShutterBillList({ shutterBill, updateBill, removeBill }:
             return <tr key={index} className="border-2 border-black">
               <td className="py-6 px-3 border-2 border-black">{ele.personName}</td>
               <td className="py-6 px-3 border-2 border-black">{ele.customerName}</td>
-              <td className="py-6 px-3 border-2 border-black">{new Date(ele.date).toLocaleDateString("en-US")}</td>
+              <td className="py-6 px-3 border-2 border-black">{ele.date.toString()}</td>
               <td className="py-6 px-3 border-2 border-black">{ele.discountType}</td>
               <td className="py-6 px-3 border-2 border-black">{ele.total}</td>
               <td className="py-6 px-3 border-2 border-black">
