@@ -41,7 +41,11 @@ export default function Model({ view }: { view: Dispatch<SetStateAction<number>>
   return (
     <div className="flex justify-center w-3/5">
       <form>
-        <div className="w-[25%] absolute border-2 border-black bg-white z-10 mx-10 p-6">
+        <div className="w-[25%] absolute border-2 border-black bg-white z-10 mx-10 my-32 p-6">
+          <button type="button" className="float-right mt-[-10px] mb-6" onClick={() => view(0)}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"></path>
+            </svg>
+          </button>
           <input type="hidden" {...register('id')} defaultValue="0" />
 
           <div className="w-full flex justify-between my-2">

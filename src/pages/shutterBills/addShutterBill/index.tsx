@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addShutterBill, shutterDetails, updateShutterBill } from "@/redux/shutter/shutterSlice";
 import { useRouter } from "next/router";
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Model from "@/components/model";
 
 const initialValue = {
   personName: '',
@@ -50,8 +51,9 @@ export default function Employee() {
     }
   }, [id])
 
-
   const dispatch = useDispatch();
+
+  const [model, setModel] = useState<number>(0);
 
   const handleForm = (formData: formAttributes) => {
 
@@ -75,8 +77,9 @@ export default function Employee() {
 
   return <>
     <p className="text-3xl text-center">Add Details</p>
+    {(model === 1) ? <Model view={setModel} /> : <></>}
     <form onSubmit={handleSubmit(handleForm)}>
-      <BasicUser register={register} control={control} error={errors} />
+      <BasicUser register={register} control={control} model={setModel} error={errors} />
       <Shutter register={register} control={control} watch={watch} setValue={setValue} error={errors} />
       <Discount register={register} error={errors} watch={watch} total={total} />
       <div className="w-[78%] flex justify-end">

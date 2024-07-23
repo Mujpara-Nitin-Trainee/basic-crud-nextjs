@@ -3,13 +3,12 @@ import Input from "./common/input";
 import Label from "./common/label";
 import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import DateInput from "./common/dateInput";
-import { useState } from "react";
-import Model from "./model";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { customerDetails } from "@/redux/customer/customerSlice";
 import Select from "./common/select";
 
-export default function BasicUser({ register, control, error }: { register: UseFormRegister<formAttributes>, control: Control<formAttributes>, error: FieldErrors<formAttributes> }) {
+export default function BasicUser({ register, control, model, error }: { register: UseFormRegister<formAttributes>, control: Control<formAttributes>, model: Dispatch<SetStateAction<number>>, error: FieldErrors<formAttributes> }) {
 
   const customer = useSelector(customerDetails);
 
@@ -19,17 +18,6 @@ export default function BasicUser({ register, control, error }: { register: UseF
   customer.customer?.map((ele) => {
     options.push({ value: ele.customerName })
   });
-
-
-  const [model, setModel] = useState<number>(0);
-
-  const handleModel = () => {
-    if (model === 0) {
-      setModel(1);
-    } else {
-      setModel(0);
-    }
-  }
 
   return (
     <>
@@ -42,7 +30,7 @@ export default function BasicUser({ register, control, error }: { register: UseF
         <div className="w-3/4 flex items-center justify-between">
           <label htmlFor='search'>Select Customer</label>
           <div className="w-3/4">
-            <button type="button" className="px-1 border-2 mx-1 border-black" onClick={handleModel}>+ Add</button>
+            <button type="button" className="px-1 border-2 mx-1 border-black" onClick={() => model(1)}>+ Add</button>
             <Select name="customerName" options={options} register={register} error={error} />
           </div>
         </div>
@@ -53,7 +41,6 @@ export default function BasicUser({ register, control, error }: { register: UseF
         <div className="w-2/4 flex items-center justify-between">
         </div>
       </div>
-      {(model === 1) ? <Model view={setModel} /> : <></>}
     </>
   )
 }
