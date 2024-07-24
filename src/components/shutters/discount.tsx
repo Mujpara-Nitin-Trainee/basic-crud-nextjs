@@ -1,7 +1,7 @@
 import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
-import Input from "./common/input";
-import Label from "./common/label";
-import Radio from "./common/radio";
+import Input from "../common/input";
+import Label from "../common/label";
+import Radio from "../common/radio";
 import { formAttributes } from "@/types/types";
 import { useEffect, useState } from "react";
 

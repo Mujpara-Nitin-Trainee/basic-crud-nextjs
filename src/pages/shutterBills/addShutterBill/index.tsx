@@ -1,6 +1,6 @@
-import BasicUser from "@/components/basicUser"
-import Discount from "@/components/discount"
-import Shutter from "@/components/shutter"
+import BasicUser from "@/components/shutters/basicUser"
+import Discount from "@/components/shutters/discount"
+import Shutter from "@/components/shutters/shutter"
 import { formAttributes } from "@/types/types";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,7 +10,7 @@ import { addShutterBill, shutterDetails, updateShutterBill } from "@/redux/shutt
 import { useRouter } from "next/router";
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from "react";
-import Model from "@/components/model";
+import Model from "@/components/shutters/model";
 
 const initialValue = {
   personName: '',
@@ -49,7 +49,7 @@ export default function Employee() {
       const data = shutterBill.shutterBill.find((ele) => (ele.id === id));
       reset(data);
     }
-  }, [id])
+  }, [id, reset, shutterBill.shutterBill])
 
   const dispatch = useDispatch();
 

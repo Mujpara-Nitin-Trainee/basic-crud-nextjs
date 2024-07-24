@@ -1,5 +1,5 @@
 import { useForm, UseFormRegister } from "react-hook-form";
-import Label from "./common/label";
+import Label from "../common/label";
 import { customerAttribute } from "@/types/types";
 import { useDispatch, useSelector } from "react-redux";
 import { addCustomer, customerDetails } from "@/redux/customer/customerSlice";

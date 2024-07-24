@@ -1,6 +1,6 @@
 import { shutterDetails } from "@/redux/shutter/shutterSlice";
 import { useDispatch, useSelector } from "react-redux"
-import ShutterBillList from "../../components/shutterBillList";
+import ShutterBillList from "../../components/shutterLists/shutterBillList";
 import { deleteShutterBill } from "../../redux/shutter/shutterSlice";
 import { useRouter } from "next/router";
 

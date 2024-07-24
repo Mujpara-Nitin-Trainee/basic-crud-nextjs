@@ -1,16 +1,19 @@
 import { formAttributes } from "@/types/types";
-import Input from "./common/input";
-import Label from "./common/label";
+import Input from "../common/input";
+import Label from "../common/label";
 import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
-import DateInput from "./common/dateInput";
+import DateInput from "../common/dateInput";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { customerDetails } from "@/redux/customer/customerSlice";
-import Select from "./common/select";
+import Select from "../common/select";
 
 export default function BasicUser({ register, control, model, error }: { register: UseFormRegister<formAttributes>, control: Control<formAttributes>, model: Dispatch<SetStateAction<number>>, error: FieldErrors<formAttributes> }) {
 
+
   const customer = useSelector(customerDetails);
+
+  console.log(customer);
 
   const options: { value: string }[] = [];
 
