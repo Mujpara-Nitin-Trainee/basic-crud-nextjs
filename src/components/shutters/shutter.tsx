@@ -1,9 +1,9 @@
 import Label from "../common/label";
-import { Control, FieldArrayWithId, FieldErrors, set, useFieldArray, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { Control, FieldErrors, useFieldArray, UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { formAttributes } from "@/types/types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import ShutterFields from "./shutterFields";
 
 export default function Shutter({ register, control, watch, setValue, error }: { register: UseFormRegister<formAttributes>, control: Control<formAttributes>, watch: UseFormWatch<formAttributes>, setValue: UseFormSetValue<formAttributes>, error: FieldErrors<formAttributes> }) {

@@ -45,3 +45,10 @@ export interface shutterBillAttribute {
   discount: number,
   amount: string
 }
+
+export interface postAttribute {
+  userId: number,
+  id: number,
+  title: string,
+  body: string
+}
