@@ -1,4 +1,3 @@
-'use Client'
 import BasicUser from "@/components/shutters/basicUser"
 import Discount from "@/components/shutters/discount"
 import Shutter from "@/components/shutters/shutter"

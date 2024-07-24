@@ -1,4 +1,3 @@
-'use Client'
 import { shutterDetails } from "@/redux/shutter/shutterSlice";
 import { useDispatch, useSelector } from "react-redux"
 import ShutterBillList from "../../components/shutterLists/shutterBillList";
